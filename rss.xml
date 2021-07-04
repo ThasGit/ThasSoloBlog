@@ -6,7 +6,7 @@
     <atom:link href="https://thas.cc/rss.xml" rel="self" type="application/rss+xml"/>
     <description>学无止境</description>
     <generator>Solo, v4.3.1, https://b3log.org/solo</generator>
-    <lastBuildDate>Sun, 04 Jul 2021 21:53:23 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 04 Jul 2021 22:25:15 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>SQL 优化的几种方式</title>
@@ -15,7 +15,7 @@
       <author>thas</author>
       <guid>https://thas.cc/articles/2021/07/04/1625395418760.html</guid>
       <category>MySQL</category>
-      <pubDate>Sun, 04 Jul 2021 18:44:54 +0800</pubDate>
+      <pubDate>Sun, 04 Jul 2021 22:04:15 +0800</pubDate>
     </item>
     <item>
       <title>Deepin 处理软件包 dde-api (--configure)时出错</title>
@@ -61,8 +61,8 @@
       <guid>https://thas.cc/articles/2021/06/02/1622637514303.html</guid>
       <category>操作系统</category>
       <category>Linux</category>
-      <category>Ubuntu</category>
       <category>Deepin</category>
+      <category>Ubuntu</category>
       <pubDate>Sun, 06 Jun 2021 20:45:33 +0800</pubDate>
     </item>
     <item>
@@ -82,8 +82,8 @@
       <author>thas</author>
       <guid>https://thas.cc/articles/2021/03/20/1616244286602.html</guid>
       <category>Ubuntu</category>
-      <category>Linux</category>
       <category>操作系统</category>
+      <category>Linux</category>
       <pubDate>Sun, 06 Jun 2021 20:44:39 +0800</pubDate>
     </item>
     <item>
@@ -101,10 +101,10 @@
       <description/>
       <author>thas</author>
       <guid>https://thas.cc/articles/2021/06/03/1622734827959.html</guid>
-      <category>Java</category>
-      <category>GC</category>
-      <category>线上诊断</category>
       <category>OOM</category>
+      <category>Java</category>
+      <category>线上诊断</category>
+      <category>GC</category>
       <pubDate>Thu, 03 Jun 2021 23:40:39 +0800</pubDate>
     </item>
   </channel>
