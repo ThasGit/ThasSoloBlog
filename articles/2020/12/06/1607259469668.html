@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java AQS - ThasBlog</title><meta name="description" content="Thas的个人博客"/><meta property="og:description" content="Thas的个人博客"/>    <meta name="keywords" content="Solo,Java,博客,开源,Thas"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"><link rel="icon" type="image/png" href="https://static.b3log.org/images/brand/solo-32.png"/><link rel="apple-touch-icon" href="https://static.b3log.org/images/brand/solo-32.png"><link rel="shortcut icon" type="image/x-icon" href="https://static.b3log.org/images/brand/solo-32.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java AQS - ThasBlog"/><meta property="og:site_name" content="ThasBlog"/><meta property="og:url"      content="https://thas.cc/articles/2020/12/06/1607259469668.html?"/><meta property="og:image" content="https://static.b3log.org/images/brand/solo-32.png"/><link rel="search" type="application/opensearchdescription+xml" title="Java AQS - ThasBlog" href="/opensearch.xml"><link href="https://thas.cc/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://thas.cc/manifest.json">        <link rel="canonical" href="https://thas.cc/articles/2020/12/06/1607259469668.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/css/base.css?1615037333914"/>
+            <link rel="prev" title="Java JMM" href="https://thas.cc/articles/2020/12/06/1607225846315.html">
+            <link rel="next" title="JAVA 对象头" href="https://thas.cc/articles/2020/12/14/1607958194047.html">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link class="hacpai-favicon" rel="icon" type="image/png" href="https://ld246.com/images/favicon.png"/>
+<link class="hacpai-favicon" rel="apple-touch-icon" href="https://ld246.com/images/apple-touch-icon.png">
+<link class="hacpai-favicon" rel="shortcut icon" type="image/x-icon" href="https://ld246.com/images/faviconH.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f3b0b72854fe136c02659b9b421b8bf9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.6.6/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<div class="side fn__flex-column">
+    <div class="overlay">
+        <a onclick="$('.side .toc').show()" href="javascript:void(0)" class="toc-btn">目录</a>
+    </div>
+    <div class="user__sites">
+    <a href="https://ld246.com/member/thas"
+       title="https://ld246.com/member/thas"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/thascc"
+           title="https://github.com/thascc"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <header class="content fn__flex-1">
+        <a href="https://thas.cc">
+            <img class="avatar" src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100" title="" alt=""/>
+        </a>
+        <hgroup>
+            <h1>
+                <a href="https://thas.cc">ThasBlog</a>
+            </h1>
+        </hgroup>
+        <p class="subtitle">
+            记录精彩的程序人生
+        </p>
+        <nav>
+            <ul>
+                    <li>
+                        <a href="https://thas.cc" target="_self">静态博客</a>
+                    </li>
+                    <li>
+                        <a href="https://i.thas.ltd" target="_self">动态博客</a>
+                    </li>
+                <li>
+                    <a href="https://thas.cc/tags.html">标签墙</a>
+                    &nbsp; &nbsp;
+                    <a href="https://thas.cc/archives.html">存档</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+            <div class="vditor-reset">Open Source, Open Mind, <br/>Open Sight, Open Future!
+
+<!-- 公告栏可使用 HTML、JavaScript，比如可以在此加入第三方统计 js -->
+
+</div>
+        <a rel="alternate" href="https://thas.cc/rss.xml" title="订阅" class="icon-rss"></a>
+    </footer>
+        <div class="toc">
+            <a onclick="$('.side .toc').hide();" href="javascript:void(0)" class="close">X</a>
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">AQS</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">ReentrantLock</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">NonfairSync</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">FairSync</a>
+        </li>
+</ul>        </div>
+</div>
+<main>
+    <article class="post">
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/06/1607259469668.html">
+                    Java AQS
+                </a>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-14</time>
+        </header>
+        <div class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">
+                        并发编程</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%BA%90%E7%A0%81">
+                        源码</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/06/1607259469668.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607259469668">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/06/1607259469668.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/06/1607259469668.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </div>
+
+        <section class="abstract vditor-reset">
+            <h2 id="toc_h2_0">AQS</h2>
+<p>AbstractQueuedSynchronizer, 队列同步器, 支持队列等待.<br>
+继承自AbstractOwnableSynchronizer, 不带队列的同步器, 只能有一个线程同步, 其他线程忽略.</p>
+<p>AQS 使用 state 和 一个FIFO队列来进行线程同步. state表示申请资源的状态, 默认0, 若已被占用则小于0.<br>
+AQS 不关注申请和释放资源的方式, 只提供了操作state的方法. 在并发申请资源过程, AQS 维护各个线程获取资源的原则, 如不满足获取资源的条件, 则先将它们放入等待队列, 等待资源可以被申请了, 再唤醒等待队列中的线程.</p>
+<p>申请和释放资源的方法需要锁自己实现:</p>
+<pre><code>// 尝试申请资源
+boolean tryAcquire(int arg)
+// 尝试释放资源
+boolean tryRelease(int arg)
+// 资源是否被独占
+boolean isHeldExclusively()
+// 尝试以共享模式申请资源
+int tryAcquireShared(int arg)
+// 尝试以共享模式释放资源
+boolean tryReleaseShared(int arg)
+</code></pre>
+<p>资源获取流程:</p>
+<pre><code class="language-java">public final void acquire(int arg) {
+        if (!tryAcquire(arg) &amp;&amp; // 尝试获取锁 如果获取到, 直接退出
+            acquireQueued(addWaiter(Node.EXCLUSIVE), arg)) // 添加到阻塞队列
+            selfInterrupt();
+    }
+</code></pre>
+<pre><code class="language-java">private Node addWaiter(Node mode) {
+        Node node = new Node(Thread.currentThread(), mode);
+        // Try the fast path of enq; backup to full enq on failure
+        Node pred = tail;
+// 如果队列已经存在, 入队
+        if (pred != null) {
+            node.prev = pred;
+            if (compareAndSetTail(pred, node)) {
+                pred.next = node;
+                return node;
+            }
+        }
+// 如果队列不存在, 则创建空的尾结点, 再入队
+        enq(node);
+        return node;
+    }
+</code></pre>
+<pre><code>final boolean acquireQueued(final Node node, int arg) {
+        boolean failed = true;
+        try {
+            boolean interrupted = false;
+            for (;;) {
+                final Node p = node.predecessor();
+// 如果存在前一个节点, 且它是头结点, 且本次直接获取到锁了, 则将自己设置为头结点, 拿到锁
+                if (p == head &amp;&amp; tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    failed = false;
+                    return interrupted;
+                }
+// 一般情况下不会那么顺利的
+// 判断是否需要阻塞, 如果前一个节点waitStatus=-1, 则阻塞, 否则设置为-1, 将它作为自己的唤醒人
+// 这里必须要while(true) 自旋, 因为前一个节点有可能取消申请
+                if (shouldParkAfterFailedAcquire(p, node) &amp;&amp;
+// 入队和park动作并非原子性的, 所以可能在park之前抢先被其他线程读取到这个入队状态, 抢先unpark, 但是unpark是可以抵消到未来的一个park动作, 所以这里不会出现死锁问题.
+                    parkAndCheckInterrupt())
+                    interrupted = true;
+            }
+        } finally {
+            if (failed)
+                cancelAcquire(node);
+        }
+    }
+</code></pre>
+<p>释放资源流程:</p>
+<pre><code>public final boolean release(int arg) {
+        if (tryRelease(arg)) {
+            Node h = head;
+            if (h != null &amp;&amp; h.waitStatus != 0)
+// 释放成功 unpark队列下一个线程
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+</code></pre>
+<p>条件等待与普通的阻塞等待类似, 有一个专门的 waiter队列</p>
+<pre><code class="language-java">public final void await() throws InterruptedException {
+            if (Thread.interrupted())
+                throw new InterruptedException();
+// 添加到 waiter 队列
+            Node node = addConditionWaiter();
+            int savedState = fullyRelease(node);
+            int interruptMode = 0;
+// 如果不在阻塞等待中, 直接park
+            while (!isOnSyncQueue(node)) {
+                LockSupport.park(this);
+                if ((interruptMode = checkInterruptWhileWaiting(node)) != 0)
+                    break;
+            }
+// 如果被唤醒了 且已进入阻塞队列 则进入正常的阻塞流程
+            if (acquireQueued(node, savedState) &amp;&amp; interruptMode != THROW_IE)
+                interruptMode = REINTERRUPT;
+            if (node.nextWaiter != null) // clean up if cancelled
+                unlinkCancelledWaiters();
+            if (interruptMode != 0)
+                reportInterruptAfterWait(interruptMode);
+        }
+</code></pre>
+<p>条件唤醒:</p>
+<pre><code>private void doSignal(Node first) {
+            do {
+                if ( (firstWaiter = first.nextWaiter) == null)
+                    lastWaiter = null;
+                first.nextWaiter = null;
+// 将第一个送到阻塞队列
+            } while (!transferForSignal(first) &amp;&amp;
+                     (first = firstWaiter) != null);
+        }
+</code></pre>
+<pre><code>private void doSignalAll(Node first) {
+            lastWaiter = firstWaiter = null;
+            do {
+                Node next = first.nextWaiter;
+                first.nextWaiter = null;
+// 全部送到阻塞队列
+                transferForSignal(first);
+                first = next;
+            } while (first != null);
+        }
+</code></pre>
+<p>延时获取锁的方式比较简单, 用的是, 最多park这么长时间, 结束后判断能不能处理, 不能就失败出队</p>
+<pre><code>LockSupport.parkNanos
+</code></pre>
+<h2 id="toc_h2_1">ReentrantLock</h2>
+<p>state=0, 代表无线程占用资源;<br>
+state=-1, 代表已有线程占用资源, exclusiveOwnerThread 存放占用资源的线程<br>
+state=-N, 代表重入的次数</p>
+<h3 id="toc_h3_2">NonfairSync</h3>
+<p>允许插队, 当线程获取锁时, 如果能够获取锁, 则不判断是否有线程在队列中, 直接获取, 若获取到, 则抢占, 否则进入队列. 非公平模式下队列中的线程依然是有序唤醒.</p>
+<blockquote>
+<p>非公平锁的优势: 非公平锁模式下, 执行中的线程抢锁时, 有几率抢锁成功, 此线程无需进入队列即可连续运行, 省掉了线程上下文切换的开销; 但是队列中的线程, 则面临被唤醒然后又进入队列阻塞等待的不公平待遇. 此种模式下总的上下文切换开销并没有减少. 此种方式通过牺牲某些线程的"利益"保障了另一部分线程执行的连续性. 所以这算不上非公平锁模式的优点.<br>
+非公平锁在一定程度上可以减少死锁情况的发生. 例如:<br>
+如果一个任务分成 3 段执行, 第 1 段和第 3 段需要抢锁, 第 2 段释放锁. 抢锁超时会从头开始重试. 在公平锁模式下, 如果有多个线程都有执行这个任务, 则这些线程在执行第 3 段抢锁时都需要进入队列等待全部线程的第 1 段任务执行完成, 若此时超时, 则这些线程都需要重新进入队列抢第 1 段的锁重试, 这些线程将进入一个无限循环重试的状态.<br>
+非公平锁模式在新来的线程抢锁失败的情形下等同于公平锁模式, 但是在抢锁成功情况下, 可以解除上述的死循环的问题, 若抢锁成功, 线程可以完整执行成功退出等待队列, 同时队列长度减少, 即便有几率抢锁失败, 这个队列的等待时间也会逐渐减少, 从而概率性的退出无限循环的状态.</p>
+</blockquote>
+<h3 id="toc_h3_3">FairSync</h3>
+<p>不允许插队, 所有线程获取锁时, 优先判断队列中是否有其他, 有则进入队列.</p>
+                <div>
+                    <hr>
+
+标题：Java AQS<br>
+作者：<a href="https://thas.cc" target="_blank">thas</a><br>
+地址：<a href="https://thas.cc/articles/2020/12/06/1607259469668.html" target="_blank">https://thas.cc/articles/2020/12/06/1607259469668.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                </div>
+
+                <aside class="fn__flex">
+                        <a class="fn__flex-1 fn__flex-inline" rel="prev" href="https://thas.cc/articles/2020/12/06/1607225846315.html">
+                            <strong>&lt;</strong>
+                            <span>&nbsp; Java JMM&nbsp;&nbsp;&nbsp;</span>
+                        </a>
+                        <a class="fn__flex-inline" rel="next" href="https://thas.cc/articles/2020/12/14/1607958194047.html">
+                            <span>JAVA 对象头&nbsp; </span>
+                            <strong>&gt;</strong>
+                        </a>
+                </aside>
+        </section>
+
+        <footer class="fn-clear share">
+            <div class="fn-right">
+<div class="article__share"
+     data-title="Java AQS"
+     data-blogtitle="ThasBlog"
+     data-url="https://thas.cc/articles/2020/12/06/1607259469668.html"
+     data-avatar="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>            </div>
+        </footer>
+            <div id="relevantArticles" class="abstract"></div>
+            <div id="randomArticles" class="abstract"></div>
+        <br>
+    </article>
+        <div style="padding: 30px 60px 30px 50px;" id="gitalk-container"></div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" style="padding: 30px 60px 30px 50px;" data-name="thas"
+             data-postId="1607259469668"></div>
+
+<footer class="footer">
+    <div class="fn-clear">
+        浏览数：<span data-uvstaturl="https://thas.cc">0</span>
+        &nbsp;
+        文章总数：28
+        <br>
+        &copy; 2021
+        <a href="https://thas.cc">ThasBlog</a>
+        <a href="http://www.beian.miit.gov.cn/" target="_blank" one-link-mark="yes">苏ICP备2021009230号-1</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    if (Label.articleId) {
+      const gitalk = new Gitalk({
+        clientID: '4aca0214d292a9e58c99',
+        clientSecret: '1b04f3f729ca977ac2257dcfc8c455615cfdf7ee',
+        repo: 'ThasSoloBlog',
+        owner: 'ThasGit',
+        admin: ['ThasGit'],
+        id: Label.articleId,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  })
+</script>
+
+    </div>
+    <span onclick="Util.goTop()" class="icon-goup"></span>
+</footer>
+<script>
+  var Label = {
+    speech: false,
+    servePath: "https://thas.cc",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: true,
+    articleId: "1607259469668",
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/js/common.min.js?1615037333914"></script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/js/page.min.js?1615037333914', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1607259469668",
+        "blogHost": "https://thas.cc",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+        page.tips.externalRelevantArticlesDisplayCount = "0";
+            page.loadRandomArticles();
+            page.loadRelevantArticles('1607259469668', '<h4>相关阅读：</h4>');
+        page.share()
+    });
+</script>
+</main>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 30ms, 2021/07/04 21:31:44 -->

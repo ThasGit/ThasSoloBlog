@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>2020 年 12 月 存档 - ThasBlog</title><meta name="description" content="Thas的个人博客"/><meta property="og:description" content="Thas的个人博客"/>    <meta name="keywords" content="Solo,Java,博客,开源,Thas"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"><link rel="icon" type="image/png" href="https://static.b3log.org/images/brand/solo-32.png"/><link rel="apple-touch-icon" href="https://static.b3log.org/images/brand/solo-32.png"><link rel="shortcut icon" type="image/x-icon" href="https://static.b3log.org/images/brand/solo-32.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="2020 年 12 月 存档 - ThasBlog"/><meta property="og:site_name" content="ThasBlog"/><meta property="og:url"      content="https://thas.cc/archives/2020/12?"/><meta property="og:image" content="https://static.b3log.org/images/brand/solo-32.png"/><link rel="search" type="application/opensearchdescription+xml" title="2020 年 12 月 存档 - ThasBlog" href="/opensearch.xml"><link href="https://thas.cc/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://thas.cc/manifest.json">            <link rel="canonical" href="https://thas.cc/archives/2020/12">             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/css/base.css?1615037333914"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link class="hacpai-favicon" rel="icon" type="image/png" href="https://ld246.com/images/favicon.png"/>
+<link class="hacpai-favicon" rel="apple-touch-icon" href="https://ld246.com/images/apple-touch-icon.png">
+<link class="hacpai-favicon" rel="shortcut icon" type="image/x-icon" href="https://ld246.com/images/faviconH.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f3b0b72854fe136c02659b9b421b8bf9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.6.6/dist/js/icons/ant.js" async="" id="vditorIconScript"></script>    </head>
+    <body>
+<div class="side fn__flex-column">
+    <div class="overlay">
+        <a onclick="$('.side .toc').show()" href="javascript:void(0)" class="toc-btn">目录</a>
+    </div>
+    <div class="user__sites">
+    <a href="https://ld246.com/member/thas"
+       title="https://ld246.com/member/thas"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/thascc"
+           title="https://github.com/thascc"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <header class="content fn__flex-1">
+        <a href="https://thas.cc">
+            <img class="avatar" src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100" title="" alt=""/>
+        </a>
+        <hgroup>
+            <h1>
+                <a href="https://thas.cc">ThasBlog</a>
+            </h1>
+        </hgroup>
+        <p class="subtitle">
+            记录精彩的程序人生
+        </p>
+        <nav>
+            <ul>
+                    <li>
+                        <a href="https://thas.cc" target="_self">静态博客</a>
+                    </li>
+                    <li>
+                        <a href="https://i.thas.ltd" target="_self">动态博客</a>
+                    </li>
+                <li>
+                    <a href="https://thas.cc/tags.html">标签墙</a>
+                    &nbsp; &nbsp;
+                    <a href="https://thas.cc/archives.html">存档</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+            <div class="vditor-reset">Open Source, Open Mind, <br/>Open Sight, Open Future!
+
+<!-- 公告栏可使用 HTML、JavaScript，比如可以在此加入第三方统计 js -->
+
+</div>
+        <a rel="alternate" href="https://thas.cc/rss.xml" title="订阅" class="icon-rss"></a>
+    </footer>
+</div>
+        <main>
+            <h2 class="classify-name">
+                存档：
+                2020 年 12 月 (7)
+            </h2>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/14/1607958194047.html">
+                    JAVA 对象头
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/14/1607958194047.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-14</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/14/1607958194047.html">
+                对象头结构  偏向锁与 hash 不能共存， 一旦计算过 hash, 对象就不可偏向。 对象头中的 bl:1 代表是否可偏向， 若不可偏向， 则前 56 位可以用来表示 hash 值， 若可偏向， 则前 56 位必不表示 hash 值， 可以用来表示偏向的线程 ID  Object 没有属性， 所以除了对象头就没有其他内容了， 根据 8 字节对齐， 自动填充了 4 字节 Object[]数组会额外使用 4 字节保存长度， 所以数组的最大长度为整形; 后面则是顺序存储的全部元素的指针， 由于开启了指针压缩， 每个都是 4 个字节。  指针压缩 32 位 CPU 的最大寻址空间为 2^32, 如果这些寻址空间指向 bit 位， 那么最大支持的内存为 512M; 但是 CPU 存储数据的时候都是以 8bit 为一组， 也就是 1byte; 把寻址空间指向 byte 组， 就可以让最大支持内存增加到 4G. JVM 指针压缩原理相同。 64 位 JVM 最大寻址空间是 2^64, 寻址空间指向 byte 组， 则最大可支持 2^34G 内存; 但是存储 64 位指针会让内存占用提高。 由于 J....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/14/1607958194047.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607958194047">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/14/1607958194047.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/14/1607958194047.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/06/1607259469668.html">
+                    Java AQS
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/06/1607259469668.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-14</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/06/1607259469668.html">
+                AQS AbstractQueuedSynchronizer, 队列同步器， 支持队列等待。 继承自 AbstractOwnableSynchronizer, 不带队列的同步器， 只能有一个线程同步， 其他线程忽略。 AQS 使用 state 和 一个 FIFO 队列来进行线程同步。 state 表示申请资源的状态， 默认 0, 若已被占用则小于 0. AQS 不关注申请和释放资源的方式， 只提供了操作 state 的方法。 在并发申请资源过程， AQS 维护各个线程获取资源的原则， 如不满足获取资源的条件， 则先将它们放入等待队列， 等待资源可以被申请了， 再唤醒等待队列中的线程。 申请和释放资源的方法需要锁自己实现：  1// 尝试申请资源  2boolean tryAcquire(int arg)  3// 尝试释放资源  4boolean tryRelease(int arg)  5// 资源是否被独占  6boolean isHeldExclusively()  7// 尝试以共享模式申请资源  8int tryAcquireShared(int arg)  9// 尝试以共....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">
+                        并发编程</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%BA%90%E7%A0%81">
+                        源码</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/06/1607259469668.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607259469668">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/06/1607259469668.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/06/1607259469668.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/06/1607225846315.html">
+                    Java JMM
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/06/1607225846315.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-14</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/06/1607225846315.html">
+                JVM 使用线程工作内存和主内存这两个概念来抽象物理内存结构， 从而屏蔽掉各平台各操作系统的内存结构差异。 JMM 为保障这套抽象内存结构的并发安全， 提供了协议和工具的支持。
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">
+                        并发编程</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/06/1607225846315.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607225846315">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/06/1607225846315.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/06/1607225846315.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/05/1607178489851.html">
+                    Java8 ConcurrentHashMap
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/05/1607178489851.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-13</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/05/1607178489851.html">
+                ConcurrentHashMap 是 HashMap 的线程安全版本， 使用了 CAS, volatile 和 synchronize 技术。  初始化时使用 volatile 修饰的 sizeCtl 作为互斥条件， 如果有其他线程正在操作则 Thread.yeild(). 在插入元素时， 如果元素不存在， 则使用 CAS, 在插入新元素时， 如果元素不存在才能插入成功， 否则失败重试， 如果是 MOVED 状态， 则先辅助扩容， 完成后再尝试插入。 如果元素存在， 需要进行修改或者 Hash 冲突， 则加 synchronize 锁进行处理(因为情况比较复杂， 可能是链表， 可能还需要树化), synchronize 修饰 bin 上的第一个元素 元素数量修改时， 并发高的情况容易 CAS 失败， 引入 counterCells 数组减小 CAS 失败的概率 数组扩容时， 分段迁移， 每段最少 16, 迁移前 CAS 设置 transferIndex, 设置成功则得到该小段的迁移的权利。 迁移时， 如果该 bin 上有值， 则 synchronize 锁住， 如果无值， 则 CAS....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">
+                        并发编程</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%BA%90%E7%A0%81">
+                        源码</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/05/1607178489851.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607178489851">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/05/1607178489851.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/05/1607178489851.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/05/1607172626059.html">
+                    Java8 HashMap
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/05/1607172626059.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-05</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/05/1607172626059.html">
+                HashMap Map 意思是映射， 从 key 映射到 value. HashMap 就是基于 hash 的 key 来实现映射关系。 数组是在连续的固定大小的内存空间上顺序且紧凑地存储元素的集合。 数组支持随机读写， 其本质原因就是紧凑存储。 通过数组头部位置 + 索引就可以直接获得指定元素的地址， 对该地址直接进行读写。 但紧凑存储同时带来另一弊端， 为了保证数组元素紧凑， 每次在数组中间增删元素时都需要挪动数组元素以保证数组中间没有空缺。 数组索引 = 元素在数组中的位置， 数组索引是顺序的且永远不会重复。 Hash 表继承了数组的优点， 支持随机读写， 又不需要(频繁)挪动元素。 牺牲了少量额外内存空间和散列计算开销。 Hash 索引 = 散列函数(元素), Hash 索引不是顺序的， 只与元素本身相关， 但是是可能重复的。 当 Hash 索引重复时， 一个索引会对应多个元素， 这就是 Hash 碰撞， 这时 Hash 表随机读写的优势就会降低。 适当的增加 Hash 表分配的内存空间可以减少 Hash 碰撞几率， 所以 Hash 表通常会有额外的未利用内存空间。 链地址法(....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%BA%90%E7%A0%81">
+                        源码</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/05/1607172626059.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607172626059">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/05/1607172626059.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/05/1607172626059.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/05/1607170089855.html">
+                    红黑树
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/05/1607170089855.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-05</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/05/1607170089855.html">
+                红黑树是特殊的二叉平衡搜索树。 特点：  所有节点均为黑色或红色节点。 根节点一定为黑色节点。 叶子节点均使用 NIL 黑色节点填充。 不能出现连续的红色节点。 根节点到叶子节点的所有路径具有相同数量的黑色节点。  红黑树保证平衡的重要手段是左旋/右旋以及变色。 模拟器：https://www.cs.usfca.edu/~galles/visualization/RedBlack.html 二叉搜索树左子节点 &lt; 根节点 &lt; 右子节点， 无论左旋还是右旋始终满足这个大小关系。 左旋/右旋这两种手段适用于全部的二叉搜索树， 而不仅仅是平衡树。  红黑树保持平衡的方式： 大前提： 新插入的节点永远是红色. (如果是黑色， 那就没有红色了， 全靠黑色节点来保障平衡， 那就退化成严格平衡二叉树了) 1 新插入节点的父节点是黑色节点, 红黑树依然保持平衡， 无需操作。 2 新插入节点的父节点是红色节点， 叔叔节点为黑色节点或 NIL(直接忽略叔叔节点或者将其看成一个 NIL 整体): 分为 LL/RR 和 LR/RL 两大类型。 核心思想一样， 围绕新插入节点 + 父节点 + 祖父节....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">
+                        数据结构</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/05/1607170089855.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607170089855">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/05/1607170089855.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/05/1607170089855.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+    <article>
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/03/1607007619349.html">
+                    Jvm GC 示例代码
+                </a>
+                    <sup>
+                        <a href="https://thas.cc/articles/2020/12/03/1607007619349.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <time><span class="icon-date"></span> 2021-06-06</time>
+        </header>
+            <a class="abstract vditor-reset" href="https://thas.cc/articles/2020/12/03/1607007619349.html">
+                jvm参数: -Xms1000m -Xmx1000m -XX:NewRatio=9 -XX:SurvivorRatio=8 -XX:-UseParNewGC -XX:-UseConcMarkSweepGC -XX:+UseSerialGC -XX:+PrintGC -XX:+PrintGCDetails -XX:-UseTLAB  java代码: public class Main { static Object[] bs = new Object[500]; public static void main(String[] args) throws Exception { //预留时间连接console Thread.sleep(20000); // 消除程序初始化的影响 System.gc(); for (int i = 0; i &lt; bs.length; i++) { // 分配1mb //建立强引用 bs[i] =new byte[1024*1024]; Thread.sleep(200); } System.gc(); Thread.sleep(10000); } } ....
+            </a>
+        <footer class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/GC">
+                        GC</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/03/1607007619349.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607007619349">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/03/1607007619349.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/03/1607007619349.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </footer>
+    </article>
+
+    <nav class="pagination">
+                <span class="current page-num">1</span>
+            </nav>
+<footer class="footer">
+    <div class="fn-clear">
+        浏览数：<span data-uvstaturl="https://thas.cc">0</span>
+        &nbsp;
+        文章总数：28
+        <br>
+        &copy; 2021
+        <a href="https://thas.cc">ThasBlog</a>
+        <a href="http://www.beian.miit.gov.cn/" target="_blank" one-link-mark="yes">苏ICP备2021009230号-1</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    if (Label.articleId) {
+      const gitalk = new Gitalk({
+        clientID: '4aca0214d292a9e58c99',
+        clientSecret: '1b04f3f729ca977ac2257dcfc8c455615cfdf7ee',
+        repo: 'ThasSoloBlog',
+        owner: 'ThasGit',
+        admin: ['ThasGit'],
+        id: Label.articleId,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  })
+</script>
+
+    </div>
+    <span onclick="Util.goTop()" class="icon-goup"></span>
+</footer>
+<script>
+  var Label = {
+    speech: false,
+    servePath: "https://thas.cc",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: true,
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/js/common.min.js?1615037333914"></script>
+
+        </main>
+
+    </body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2021/07/04 21:31:45 -->

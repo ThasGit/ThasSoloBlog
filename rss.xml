@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>ThasBlog</title>
+    <link>https://thas.cc</link>
+    <atom:link href="https://thas.cc/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>记录精彩的程序人生</description>
+    <generator>Solo, v4.3.1, https://b3log.org/solo</generator>
+    <lastBuildDate>Sun, 04 Jul 2021 21:31:43 +0800</lastBuildDate>
+    <language>zh-cn</language>
+    <item>
+      <title>SQL 优化的几种方式</title>
+      <link>https://thas.cc/articles/2021/07/04/1625395418760.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/07/04/1625395418760.html</guid>
+      <category>MySQL</category>
+      <pubDate>Sun, 04 Jul 2021 18:44:54 +0800</pubDate>
+    </item>
+    <item>
+      <title>Deepin 处理软件包 dde-api (--configure)时出错</title>
+      <link>https://thas.cc/articles/2021/06/30/1625059364605.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/30/1625059364605.html</guid>
+      <category>Deepin</category>
+      <pubDate>Wed, 30 Jun 2021 21:22:44 +0800</pubDate>
+    </item>
+    <item>
+      <title>MySQL 范式</title>
+      <link>https://thas.cc/articles/2021/06/24/1624543823510.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/24/1624543823510.html</guid>
+      <category>MySQL</category>
+      <pubDate>Thu, 24 Jun 2021 22:10:23 +0800</pubDate>
+    </item>
+    <item>
+      <title>MySQL 事务</title>
+      <link>https://thas.cc/articles/2021/06/24/1624543316182.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/24/1624543316182.html</guid>
+      <category>MySQL</category>
+      <pubDate>Thu, 24 Jun 2021 22:01:56 +0800</pubDate>
+    </item>
+    <item>
+      <title>关于本站</title>
+      <link>https://thas.cc/articles/2021/03/07/1615097800363.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/03/07/1615097800363.html</guid>
+      <category>Solo</category>
+      <pubDate>Sun, 06 Jun 2021 20:45:58 +0800</pubDate>
+    </item>
+    <item>
+      <title>Ubuntu/Deepin 英伟达显卡驱动安装</title>
+      <link>https://thas.cc/articles/2021/06/02/1622637514303.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/02/1622637514303.html</guid>
+      <category>操作系统</category>
+      <category>Linux</category>
+      <category>Deepin</category>
+      <category>Ubuntu</category>
+      <pubDate>Sun, 06 Jun 2021 20:45:33 +0800</pubDate>
+    </item>
+    <item>
+      <title>Jvm GC 示例代码</title>
+      <link>https://thas.cc/articles/2020/12/03/1607007619349.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2020/12/03/1607007619349.html</guid>
+      <category>Java</category>
+      <category>GC</category>
+      <pubDate>Sun, 06 Jun 2021 20:45:11 +0800</pubDate>
+    </item>
+    <item>
+      <title>Ubuntu Kylin 安装</title>
+      <link>https://thas.cc/articles/2021/03/20/1616244286602.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/03/20/1616244286602.html</guid>
+      <category>Linux</category>
+      <category>Ubuntu</category>
+      <category>操作系统</category>
+      <pubDate>Sun, 06 Jun 2021 20:44:39 +0800</pubDate>
+    </item>
+    <item>
+      <title>MySQL 体系架构</title>
+      <link>https://thas.cc/articles/2021/06/06/1622983424981.html</link>
+      <description><![CDATA[<p>MySQL架构分为3部分, 连接层, Server层, 引擎层. 连接层负责服务端与客户端的连接, 会话和权限验证. Server层包括SQL接口, 解析器, 优化器和查询器. 引擎层则是数据存储的具体的实现.</p>]]></description>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/06/1622983424981.html</guid>
+      <category>MySQL</category>
+      <pubDate>Sun, 06 Jun 2021 20:44:07 +0800</pubDate>
+    </item>
+    <item>
+      <title>记一次线上 JAVA 程序 OOM 事件</title>
+      <link>https://thas.cc/articles/2021/06/03/1622734827959.html</link>
+      <description/>
+      <author>thas</author>
+      <guid>https://thas.cc/articles/2021/06/03/1622734827959.html</guid>
+      <category>Java</category>
+      <category>GC</category>
+      <category>OOM</category>
+      <category>线上诊断</category>
+      <pubDate>Thu, 03 Jun 2021 23:40:39 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

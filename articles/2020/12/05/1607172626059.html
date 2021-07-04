@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java8 HashMap - ThasBlog</title><meta name="description" content="Thas的个人博客"/><meta property="og:description" content="Thas的个人博客"/>    <meta name="keywords" content="Solo,Java,博客,开源,Thas"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources"><link rel="icon" type="image/png" href="https://static.b3log.org/images/brand/solo-32.png"/><link rel="apple-touch-icon" href="https://static.b3log.org/images/brand/solo-32.png"><link rel="shortcut icon" type="image/x-icon" href="https://static.b3log.org/images/brand/solo-32.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java8 HashMap - ThasBlog"/><meta property="og:site_name" content="ThasBlog"/><meta property="og:url"      content="https://thas.cc/articles/2020/12/05/1607172626059.html?"/><meta property="og:image" content="https://static.b3log.org/images/brand/solo-32.png"/><link rel="search" type="application/opensearchdescription+xml" title="Java8 HashMap - ThasBlog" href="/opensearch.xml"><link href="https://thas.cc/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://thas.cc/manifest.json">        <link rel="canonical" href="https://thas.cc/articles/2020/12/05/1607172626059.html">        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/css/base.css?1615037333914"/>
+            <link rel="prev" title="红黑树" href="https://thas.cc/articles/2020/12/05/1607170089855.html">
+            <link rel="next" title="Java8 ConcurrentHashMap" href="https://thas.cc/articles/2020/12/05/1607178489851.html">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link class="hacpai-favicon" rel="icon" type="image/png" href="https://ld246.com/images/favicon.png"/>
+<link class="hacpai-favicon" rel="apple-touch-icon" href="https://ld246.com/images/apple-touch-icon.png">
+<link class="hacpai-favicon" rel="shortcut icon" type="image/x-icon" href="https://ld246.com/images/faviconH.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f3b0b72854fe136c02659b9b421b8bf9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.6.6/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<div class="side fn__flex-column">
+    <div class="overlay">
+        <a onclick="$('.side .toc').show()" href="javascript:void(0)" class="toc-btn">目录</a>
+    </div>
+    <div class="user__sites">
+    <a href="https://ld246.com/member/thas"
+       title="https://ld246.com/member/thas"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/thascc"
+           title="https://github.com/thascc"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <header class="content fn__flex-1">
+        <a href="https://thas.cc">
+            <img class="avatar" src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100" title="" alt=""/>
+        </a>
+        <hgroup>
+            <h1>
+                <a href="https://thas.cc">ThasBlog</a>
+            </h1>
+        </hgroup>
+        <p class="subtitle">
+            记录精彩的程序人生
+        </p>
+        <nav>
+            <ul>
+                    <li>
+                        <a href="https://thas.cc" target="_self">静态博客</a>
+                    </li>
+                    <li>
+                        <a href="https://i.thas.ltd" target="_self">动态博客</a>
+                    </li>
+                <li>
+                    <a href="https://thas.cc/tags.html">标签墙</a>
+                    &nbsp; &nbsp;
+                    <a href="https://thas.cc/archives.html">存档</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+            <div class="vditor-reset">Open Source, Open Mind, <br/>Open Sight, Open Future!
+
+<!-- 公告栏可使用 HTML、JavaScript，比如可以在此加入第三方统计 js -->
+
+</div>
+        <a rel="alternate" href="https://thas.cc/rss.xml" title="订阅" class="icon-rss"></a>
+    </footer>
+        <div class="toc">
+            <a onclick="$('.side .toc').hide();" href="javascript:void(0)" class="close">X</a>
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">HashMap</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">HashMap源码</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">重要内部成员</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">核心接口</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">核心方法</a>
+        </li>
+</ul>        </div>
+</div>
+<main>
+    <article class="post">
+        <header class="fn__flex">
+            <h2 class="fn__flex-1">
+                <a rel="bookmark" href="https://thas.cc/articles/2020/12/05/1607172626059.html">
+                    Java8 HashMap
+                </a>
+            </h2>
+            <time><span class="icon-date"></span> 2020-12-05</time>
+        </header>
+        <div class="article__footer fn__flex">
+            <span class="icon-tag fn__flex-center"></span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="tags fn__flex-1 fn__flex-center">
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/Java">
+                        Java</a>
+                    <a class="tag" rel="tag" href="https://thas.cc/tags/%E6%BA%90%E7%A0%81">
+                        源码</a>
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="https://thas.cc/articles/2020/12/05/1607172626059.html#b3logsolocomments"
+                   class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+                   aria-label="评论">
+                    <span data-uvstatcmt="1607172626059">0</span>
+                    <span class="icon-chat"></span>
+                </a>
+            <a class="vditor-tooltipped__n vditor-tooltipped link fn__flex-center"
+               href="https://thas.cc/articles/2020/12/05/1607172626059.html"
+               aria-label="浏览">
+                <span data-uvstaturl="https://thas.cc/articles/2020/12/05/1607172626059.html">0</span>
+                <span class="icon-views"></span>
+            </a>
+            <a rel="nofollow" href="https://thas.cc/authors/1591443935717" class="fn__flex-center">
+                <img class="avatar" title="thas" alt="thas"
+                     src="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100"/>
+            </a>
+        </div>
+
+        <section class="abstract vditor-reset">
+            <h2 id="toc_h2_0">HashMap</h2>
+<p>Map 意思是映射, 从key映射到value.</p>
+<p>HashMap 就是基于hash的key来实现映射关系.</p>
+<p>数组是在连续的固定大小的内存空间上顺序且紧凑地存储元素的集合. 数组支持随机读写, 其本质原因就是紧凑存储. 通过<strong>数组头部位置+索引</strong>就可以直接获得指定元素的地址, 对该地址直接进行读写. 但紧凑存储同时带来另一弊端, 为了保证数组元素紧凑, 每次在数组中间增删元素时都需要挪动数组元素以保证数组中间没有空缺.</p>
+<p>数组索引 = 元素在数组中的位置, 数组索引是顺序的且永远不会重复.</p>
+<p>Hash表继承了数组的优点, 支持随机读写, 又不需要(频繁)挪动元素. 牺牲了少量额外内存空间和散列计算开销.</p>
+<p>Hash索引 = 散列函数(元素), Hash索引不是顺序的, 只与元素本身相关, 但是是可能重复的.</p>
+<p>当Hash索引重复时, 一个索引会对应多个元素, 这就是Hash碰撞, 这时Hash表随机读写的优势就会降低. 适当的增加Hash表分配的内存空间可以减少Hash碰撞几率, 所以Hash表通常会有额外的未利用内存空间.</p>
+<p><strong>链地址法(拉链法)</strong>: 冲突的地方转为链表, <strong>HashMap采用此种方式</strong>.</p>
+<p>开放定址法: 对Hash值再次Hash, 得到新的索引.</p>
+<p>再哈希法: 内置多个Hash算法, 冲突时则切换另一个Hash算法, 直至不冲突.</p>
+<p>公共溢出区法: 建立公共溢出表, 所有冲突的元素放到该表.</p>
+<h2 id="toc_h2_1">HashMap源码</h2>
+<h3 id="toc_h3_2">重要内部成员</h3>
+<p><strong>Node&lt;K,V&gt;[] table</strong>: HashMap中用于实现存放元素的地方, 连续的内存空间(用数组来实现), 但存放的元素并不要求紧凑存储. Hash索引映射到数组中即为数组索引.</p>
+<p><strong>int size:</strong> 实际存储的元素数量, 区别于数组长度.</p>
+<p><strong>int threshold:</strong> 可容纳元素数量(table.length * loadFactor), 区别于数组长度.</p>
+<p><strong>float loadFactor:</strong> threshold/table.length, 负载因子. 如果Hash表内存空间分配过大(数组长度过长), 碰撞概率降低, 随机读写性能提高, 但是造成过多的内存浪费; 如果内存分配过小(数组长度过短), 节省了内存, 但是碰撞概率增大, 极端时退化为链表. 负载因子0.75可以适用于大部分场景.</p>
+<p><strong>int capacity:</strong> 数组大小(table.length), 这只是一个术语, <strong>并不是一个字段</strong>, 但是确容易误解. HashMap的构造函数有这样一句:</p>
+<pre><code class="language-java">this.threshold = tableSizeFor(initialCapacity);
+</code></pre>
+<p>其中tableSizeFor函数是用来优化数组容量的, 当容量为2的幂时, 可以通过简单的位运算获得Hash索引.</p>
+<p>容量为2的幂的二进制数形式为:</p>
+<pre><code class="language-text">10000000
+</code></pre>
+<p>如果要获得一个数在该数组中的索引, 只需取模即可. 将1000000000 - 1得到</p>
+<pre><code class="language-text">01111111
+</code></pre>
+<p>那么余数就是</p>
+<pre><code class="language-text">01111111
+&amp; 11010101
+= 01010101
+</code></pre>
+<p>即抹掉高位.</p>
+<p>继续, 构造函数中该语句的含义就等于this.threshold = capacity, 很让人误解threshold和capacity, <strong>这是个坑</strong>, 在resize函数中可以找到答案:</p>
+<pre><code class="language-java">final Node&lt;K,V&gt;[] resize() {
+        Node&lt;K,V&gt;[] oldTab = table;
+        int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        int oldThr = threshold;
+        int newCap, newThr = 0;
+        if (oldCap &gt; 0) {
+          ...
+          // 当数组已被初始化时 做些处理
+        }
+        else if (oldThr &gt; 0) // initial capacity was placed in threshold
+            // 当数组未被初始化, 且设置了初始threshold时, capacity = threshold
+            newCap = oldThr;
+        else {               // zero initial threshold signifies using defaults
+            newCap = DEFAULT_INITIAL_CAPACITY;
+            newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+        }
+        if (newThr == 0) {
+            float ft = (float)newCap * loadFactor;
+            newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (float)MAXIMUM_CAPACITY ?
+                      (int)ft : Integer.MAX_VALUE);
+            // 将threshold调整为正常的capacity * loadFactor
+        }
+        threshold = newThr;
+        ...
+    }
+</code></pre>
+<p>也就是说, 只有通过构造函数设置初始容量时, threshold才会被赋值为capacity, 但当真正初始化table时, capacity = threshold, threshold = capacity * loadFactor 恢复正常.</p>
+<p>这样做的目的其实是Java做的一个延迟初始化优化工作, 当HashMap刚刚创建时, 并不初始化table, 等到真正要存放元素, 才初始化. 但是上面也提到capacity这个术语并没有真正定义为内部字段(不需要定义, 因为capacity = table.length), 所以就<strong>借助threshold临时充当了capacity</strong>. 观察构造函数的参数名, 也可以发现, 本身期望参数就是capacity:</p>
+<pre><code class="language-text">public HashMap(int initialCapacity)
+</code></pre>
+<p><strong>阿里巴巴编码规约要求, 实例化HashMap时应当指定容量, 这个容量并不是你实际要存放的元素个数, 而应当根据期望存放数量(threshold)和负载因子计算容量(capacity)大小.</strong></p>
+<p><strong>Node</strong>即为存放Key-Value元素的载体, 本身是一个链表节点实现, 为Hash碰撞做准备. HashMap前半段Hash指Hash表, 后半段Map代表映射, HashMap的实现除了存放Key的集合外, 每个Key还可以附带一个Value(映射), 这就是HashMap的两层含义.</p>
+<h3 id="toc_h3_3">核心接口</h3>
+<p><strong>Entry</strong>接口: 对于外部使用者而言, 无需关注Node是如何实现, 只需要关心取得他所存放的Key-Value, 所以Entry只提供key的getter(key不可改)以及value的getter和setter</p>
+<p>hash: key的hash值缓存, 避免重复计算. 但是可能会造成内存泄漏, 如果key的hash值由于某些成员的变化改变了, 那么这个key就再也无法被找到了.</p>
+<p>key: key</p>
+<p>value: value</p>
+<p>next: 链表下一节点</p>
+<h3 id="toc_h3_4">核心方法</h3>
+<p>**Node&lt;K, V&gt;[] resize(): **数组扩容</p>
+<p>该方法会在三种情况下被调用:</p>
+<ol>
+<li>首次存放元素, 需要初始化时, 上面提到过, 有坑.</li>
+<li>size &gt; threshold时(容量不够了). 比较常见</li>
+<li>Hash碰撞的元素超过8个, 但数组容量过小(&lt;64)时, 扩容而不是树化(扩容可以降低碰撞概率). 这种情况下的扩容与实际存放的元素数量(size)无关.</li>
+<li>resize的源码分为两部分:</li>
+<li>扩容, 容量和阈值都翻倍. 构建新的数组.</li>
+<li>将原数组的元素迁移到新数组.</li>
+</ol>
+<p>数组中的每个位置成为bin(箱子), 因为并不一定只存放一个元素. 当bin中只有一个元素, 重新使用位运算计算索引即可(数组大小依然是2的幂). 当bin中不止一个元素时, bin中的所有元素都需要一一处理. 这些碰撞的元素, 只有两个位置, 一个是原bin, 另一个是扩容那一侧的相同位置的bin(偏移原位置+原数组大小), 因为它们的hash值拥有相同的低位, 这一次 HashMap中将这种操作成为 split, 原位置叫 low, 扩容那一侧叫 high.</p>
+<p>split后, 依然会保持原链表的顺序, 源码注释提到过. 至于bin中的元素到底在low侧还是high侧, Java8有一种非常巧妙的方式:</p>
+<pre><code class="language-java">// 判断该表达式是否为0 为0则在低侧
+(currentNode.hash &amp; oldCapacity) == 0
+// 数组容量的特点
+10000000
+// 获得索引时
+10000000 - 1 = 01111111
+// 索引等于Hash值的后面几位
+// 如果一个Hash值 &amp; 原数组容量 = 0 说明该Hash值在原数组容量的最高位的那个数一定是0
+// 新数组容量为两倍 比原数组容量高了一位
+100000000
+// 那么 计算新索引时
+10000000 - 1 = 011111111
+// 由于Hash值在原数组容量的最高位的那个数是0 所以此时计算得到的索引与原索引相同
+// 反之 新索引最高位将会多出一个1 也就是偏移到扩容那一侧的相同位置
+</code></pre>
+<p>如果是红黑树节点(根节点), 就调用红黑树的split方法(此时, 才会根据&lt;6进行反树化)</p>
+<p>**V put(K key, V value): **存放一个元素.</p>
+<p>大家都会的: put方法, 先计算key的Hash值, 得到数组索引, 将key+value封装为一个Node放入该位置, 如果该位置, 已有元素, 则将该Node以链表形式放入, 如果链表长度超过8, 转换为红黑树.</p>
+<p>更深入点研究存放元素的过程.</p>
+<p>第一步: 计算hash值, 此hash并非JavaObject的hash, 它是逻辑上的Hash索引值, 区别于实际存储到数组的数组索引.</p>
+<p>Hash表的内存空间一定要比Hash索引的取值范围更大, 但是Java的Hash值是32位, 每个Hash表分配这么大的内存空间显然是不现实的. 因此通过分配一个特定大小的数组, 通过取模的方式得到Hash值在该数组中的映射位置, 从而减小了内存空间的占用.</p>
+<p>为了更好的计算这个数组索引, HashMap使用了非常取巧的方式, 上面也提到了, 当数组容量为2的幂时, 任何二进制数和它取模都是取最后几位, 通过简单的位运算即可得到索引. 但是这也带来另一个麻烦, 不管Hash值有多少位, 真正有意义的只有最后几位, 碰撞概率大大提高, 因此HashMap引入了扰动函数, 让高16位和低16位异或运算, 降低低16位的碰撞概率.</p>
+<pre><code class="language-java">static final int hash(Object key) {
+       int h;
+       return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+ }
+</code></pre>
+<p>这便是第一步要重新计算Hash值得原因.</p>
+<p>第二步: 判断是否需要初始化, 如未初始化, 通过resize初始化, 上面提到过capacity的问题.</p>
+<p>第三步: 计算数组索引(实际存放的位置)</p>
+<pre><code class="language-text">tab[i = (n - 1) &amp; hash]
+</code></pre>
+<ol>
+<li>如果该位置没有元素, 则构建链表节点直接存放</li>
+</ol>
+<pre><code class="language-text">tab[i] = newNode(hash, key, value, null)
+</code></pre>
+<ol start="2">
+<li>如果该位置已有元素, 且该元素的key与本次插入的key相同, 则替换该元素的value.</li>
+<li>如果该key与本次插入的key不相同, 且该元素是树节点(红黑树根节点), 则使用putTreeVal方法存放元素(红黑树存放元素).</li>
+<li>如果该元素不是树节点, 那就是个普通链表节点了, 开始拉链. 遍历该链表, 判断每个元素的key是否和本次插入的key相同, 发现相同的key, 则本次替换该元素的value, 结束; 如果到最后都没有相同的key, 就构建节点插入链表尾部. 当链表节点达到8个时, 树化.</li>
+</ol>
+<p>最后, 判断size是否大于阈值, 如大于阈值, 扩容</p>
+<p>**V get(Object key): **查找一个元素, 返回Value.</p>
+<p>首先计算hash值. 计算索引, 定位到目标bin.</p>
+<p>如果该bin没有元素直接返回null.</p>
+<p>如果该bin有元素, 且该元素的key与本次插入的key相同, 则直接返回</p>
+<p>如果该bin有元素, 该节点时红黑树节点, 委托给红黑树getTreeNode</p>
+<p>如果只是普通节点, 直接向后遍历.</p>
+<p>**V remove(Object key): **删除一个元素, 返回元素的Value; 返回null代表没有改Key的元素.</p>
+<p>与查找过程非常类似, 但又有区别, 删除操作是统一执行的.</p>
+<p>如果该bin没有元素直接返回null.</p>
+<p>如果该bin有元素, 且为目标元素, 暂存.</p>
+<p>如果该bin有元素, 该节点时红黑树节点, 委托给红黑树getTreeNode, 暂存.</p>
+<p>如果该bin有元素, 直接向后遍历, 找到目标元素, 暂存.</p>
+<p>如果暂存元素不为空, 则为待删除的元素. 红黑树节点委托给红黑树removeTreeNode; 链表第一个节点删除, 要注意将后一个节点放到数组的bin上.</p>
+<p>红黑树算法的实现细节比较复杂, 简单挑几个可能有用的点.</p>
+<p>红黑树的所有元素均是有序的, 优先Hash值排序(碰撞了不代表Hash值相同, 只是取模后的索引相同), 如果Hash值相同且Key是可比较的(实现了Comparable接口, 且Comparable的泛型参数是该Key的类型), 那么按Key的大小排序, 如果是不可比较的, 则按IdentityHashCode排序.</p>
+<p>查找元素时, 优先按Hash值区分左右子树, 然后按Comparable接口比较大小进行区分, 如果还不行则递归.(最后用的是递归, 而不是IdentityHashCode)</p>
+<p>反树化的条件:</p>
+<pre><code class="language-text">if (root == null// 根节点没了
+                || (movable
+                    &amp;&amp; (root.right == null // 右子树没了
+                        || (rl = root.left) == null // 左子树没了
+                        || rl.left == null))) {// 左子树的左子树没了
+                tab[index] = first.untreeify(map);  // too small
+                return;
+            }
+</code></pre>
+<p>split过程, 先跟链表一样拆分, 再针对拆分后的两个链表重新建树.</p>
+<p>拆分后的树节点数目小于6个,也会反树化.</p>
+<p>反树化过程十分简单, 因为所有的树节点本身也符合链表节点特性, 只需要将树节点类型转换成普通节点即可.</p>
+<p>详细代码注释放在: <a href="https://github.com/thascc/java8" target="_blank">https://github.com/thascc/java8</a></p>
+                <div>
+                    <hr>
+
+标题：Java8 HashMap<br>
+作者：<a href="https://thas.cc" target="_blank">thas</a><br>
+地址：<a href="https://thas.cc/articles/2020/12/05/1607172626059.html" target="_blank">https://thas.cc/articles/2020/12/05/1607172626059.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                </div>
+
+                <aside class="fn__flex">
+                        <a class="fn__flex-1 fn__flex-inline" rel="prev" href="https://thas.cc/articles/2020/12/05/1607170089855.html">
+                            <strong>&lt;</strong>
+                            <span>&nbsp; 红黑树&nbsp;&nbsp;&nbsp;</span>
+                        </a>
+                        <a class="fn__flex-inline" rel="next" href="https://thas.cc/articles/2020/12/05/1607178489851.html">
+                            <span>Java8 ConcurrentHashMap&nbsp; </span>
+                            <strong>&gt;</strong>
+                        </a>
+                </aside>
+        </section>
+
+        <footer class="fn-clear share">
+            <div class="fn-right">
+<div class="article__share"
+     data-title="Java8 HashMap"
+     data-blogtitle="ThasBlog"
+     data-url="https://thas.cc/articles/2020/12/05/1607172626059.html"
+     data-avatar="https://b3logfile.com/avatar/1591443793002.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>            </div>
+        </footer>
+            <div id="relevantArticles" class="abstract"></div>
+            <div id="randomArticles" class="abstract"></div>
+        <br>
+    </article>
+        <div style="padding: 30px 60px 30px 50px;" id="gitalk-container"></div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" style="padding: 30px 60px 30px 50px;" data-name="thas"
+             data-postId="1607172626059"></div>
+
+<footer class="footer">
+    <div class="fn-clear">
+        浏览数：<span data-uvstaturl="https://thas.cc">0</span>
+        &nbsp;
+        文章总数：28
+        <br>
+        &copy; 2021
+        <a href="https://thas.cc">ThasBlog</a>
+        <a href="http://www.beian.miit.gov.cn/" target="_blank" one-link-mark="yes">苏ICP备2021009230号-1</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    if (Label.articleId) {
+      const gitalk = new Gitalk({
+        clientID: '4aca0214d292a9e58c99',
+        clientSecret: '1b04f3f729ca977ac2257dcfc8c455615cfdf7ee',
+        repo: 'ThasSoloBlog',
+        owner: 'ThasGit',
+        admin: ['ThasGit'],
+        id: Label.articleId,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  })
+</script>
+
+    </div>
+    <span onclick="Util.goTop()" class="icon-goup"></span>
+</footer>
+<script>
+  var Label = {
+    speech: false,
+    servePath: "https://thas.cc",
+    staticServePath: "https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: true,
+    articleId: "1607172626059",
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/skins/yilia/js/common.min.js?1615037333914"></script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://cdn.jsdelivr.net/gh/88250/solo@601801c/src/main/resources/js/page.min.js?1615037333914', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1607172626059",
+        "blogHost": "https://thas.cc",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+        page.tips.externalRelevantArticlesDisplayCount = "0";
+            page.loadRandomArticles();
+            page.loadRelevantArticles('1607172626059', '<h4>相关阅读：</h4>');
+        page.share()
+    });
+</script>
+</main>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 15ms, 2021/07/04 21:31:44 -->
