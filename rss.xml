@@ -6,7 +6,7 @@
     <atom:link href="https://thas.cc/rss.xml" rel="self" type="application/rss+xml"/>
     <description>学无止境</description>
     <generator>Solo, v4.3.1, https://b3log.org/solo</generator>
-    <lastBuildDate>Sun, 04 Jul 2021 21:45:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 04 Jul 2021 21:53:23 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>SQL 优化的几种方式</title>
@@ -59,10 +59,10 @@
       <description/>
       <author>thas</author>
       <guid>https://thas.cc/articles/2021/06/02/1622637514303.html</guid>
+      <category>操作系统</category>
+      <category>Linux</category>
       <category>Ubuntu</category>
       <category>Deepin</category>
-      <category>Linux</category>
-      <category>操作系统</category>
       <pubDate>Sun, 06 Jun 2021 20:45:33 +0800</pubDate>
     </item>
     <item>
@@ -71,8 +71,8 @@
       <description/>
       <author>thas</author>
       <guid>https://thas.cc/articles/2020/12/03/1607007619349.html</guid>
-      <category>GC</category>
       <category>Java</category>
+      <category>GC</category>
       <pubDate>Sun, 06 Jun 2021 20:45:11 +0800</pubDate>
     </item>
     <item>
@@ -101,10 +101,10 @@
       <description/>
       <author>thas</author>
       <guid>https://thas.cc/articles/2021/06/03/1622734827959.html</guid>
-      <category>线上诊断</category>
-      <category>GC</category>
-      <category>OOM</category>
       <category>Java</category>
+      <category>GC</category>
+      <category>线上诊断</category>
+      <category>OOM</category>
       <pubDate>Thu, 03 Jun 2021 23:40:39 +0800</pubDate>
     </item>
   </channel>
